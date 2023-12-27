@@ -10,11 +10,6 @@ import java.util.Properties;
 public class ConsumerExample {
 
     public static void main(final String[] args) throws Exception {
-//        if (args.length != 1) {
-//            System.out.println("Please provide the configuration file path as a command line argument");
-//            System.exit(1);
-//        }
-
         final String topic = "purchases";
 
         // Load consumer configuration settings from a local file
