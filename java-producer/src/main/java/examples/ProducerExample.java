@@ -15,13 +15,13 @@ import java.util.Random;
 public class ProducerExample {
 
     public static void main(final String[] args) throws IOException {
-        if (args.length != 1) {
+        /*if (args.length != 1) {
             System.out.println("Please provide the configuration file path as a command line argument");
             System.exit(1);
-        }
+        }*/
 
         // Load producer configuration settings from a local file
-        final Properties props = loadConfig(args[0]);
+        final Properties props = loadConfig("getting-started.properties");
         final String topic = "purchases";
 
         String[] users = {"eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther"};
