@@ -21,12 +21,13 @@ public class ConfigUtils {
         }
 
         //hack in my username and password as variables
-        if (cfg.get("sasl.jaas.config") == null) {
-            final String key = System.getenv("CONFLUENT_KEY");
-            final String secret = System.getenv("CONFLUENT_SECRET");
-            final String configValue = "org.apache.kafka.common.security.plain.PlainLoginModule required username='"+key+"' password='"+secret+"';";
-            cfg.put("sasl.jaas.config", configValue);
-        }
+
+        final String originalValue = cfg.get("sasl.jaas.config").toString();
+        final String configValue =
+                originalValue
+                .replace("API_KEY", System.getenv("CONFLUENT_KEY"))
+                .replace("API_SECRET", System.getenv("CONFLUENT_SECRET"));
+        cfg.put("sasl.jaas.config", configValue);
 
         return cfg;
     }
