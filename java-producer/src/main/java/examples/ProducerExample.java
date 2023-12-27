@@ -3,6 +3,7 @@ package examples;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import utils.ConfigUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class ProducerExample {
         }*/
 
         // Load producer configuration settings from a local file
-        final Properties props = loadConfig("getting-started.properties");
+        final Properties props = ConfigUtils.loadConfig("getting-started.properties");
         final String topic = "purchases";
 
         String[] users = {"eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther"};
@@ -45,17 +46,5 @@ public class ProducerExample {
             System.out.printf("%s events were produced to topic %s%n", numMessages, topic);
         }
 
-    }
-
-    // We'll reuse this function to load properties from the Consumer as well
-    public static Properties loadConfig(final String configFile) throws IOException {
-        if (!Files.exists(Paths.get(configFile))) {
-            throw new IOException(configFile + " not found.");
-        }
-        final Properties cfg = new Properties();
-        try (InputStream inputStream = new FileInputStream(configFile)) {
-            cfg.load(inputStream);
-        }
-        return cfg;
     }
 }
