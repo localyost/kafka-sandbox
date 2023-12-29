@@ -12,10 +12,6 @@ import java.util.Random;
 public class ProducerExample {
 
     public static void main(final String[] args) throws IOException {
-        /*if (args.length != 1) {
-            System.out.println("Please provide the configuration file path as a command line argument");
-            System.exit(1);
-        }*/
 
         // Load producer configuration settings from a local file
         final Properties props = ConfigUtils.loadConfig("getting-started.properties");
@@ -25,8 +21,8 @@ public class ProducerExample {
         String[] items = {"book", "alarm clock", "t-shirts", "gift card", "batteries"};
         try (final Producer<String, String> producer = new KafkaProducer<>(props)) {
             final Random rnd = new Random();
-            final Long numMessages = 10L;
-            for (Long i = 0L; i < numMessages; i++) {
+            final long numMessages = 10L;
+            for (long i = 0L; i < numMessages; i++) {
                 String user = users[rnd.nextInt(users.length)];
                 String item = items[rnd.nextInt(items.length)];
 
